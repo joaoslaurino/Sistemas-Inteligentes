@@ -7,13 +7,13 @@ from genetic2022 import *
 from bruteforce import *
 import time
 
-#Definindo itens 312312possiveis (peso,valor)
-itens = [(6 ,20) ,(5 ,12) ,(1 ,11) ,(1 ,55) ,(3 ,22) ,(8 ,80) ,(2 ,65) ,(3 ,27) ,(7 ,95) ,(17,28) ,(8,39) ,(2,86) ,(14,8) ,(5,84) ,(4,92) ,(3,73) ,(11,20) ,(3,14), (3 ,20) ,(5 ,18) ,(2 ,13) ,(8 ,35) ,(10 ,37) ,(7 ,78) ,(3 ,55)]
+#Definindo itens possiveis (peso,valor)
+itens = [(6 ,20) ,(5 ,12) ,(1 ,11) ,(1 ,55) ,(3 ,22) ,(8 ,80) ,(2 ,65) ,(3 ,27) ,(7 ,95) ,(17,28)]
 
 #Numero de intens
 n_itens = len(itens)
-print("Nro de itens: "+str(n_itens)) #Peso maxi3232323232ochila
-peso_max = 50
+print("Nro de itens: "+str(n_itens)) #Peso maximo da mochila
+peso_max = 10
 
 #Calcula valor de validacao com brute force
 t0 = time.time()
@@ -29,8 +29,7 @@ p_count = 100
 p = population(p_count , n_itens)
 
 #Numero de geracoes para testar
-epochs = 1500
-
+epochs = 3000
 #Salva fitness para referencia
 media = media_fitness(p, itens, peso_max)
 best_f = best_fitness(p, itens, peso_max)
@@ -47,11 +46,15 @@ for i in range(epochs):
 
 t1 = time.time()
 
+#funções para printar os valores no console
+
 print("Individuo Brute Force: "+str(best[1])+", Valor: "+str(best[0]))
 
 print("Tempo AG: "+str(t1-t0))
 
 print("Individuo AG: "+str(sorted(p, key=lambda p:p[0])[-1])+", Valor: " +str(fitness_history[2][-1]))
+
+#funções para plotar o grafico
 
 fig = plt.figure()
 ax = plt.axes()
